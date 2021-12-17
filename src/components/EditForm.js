@@ -17,7 +17,8 @@ const EditForm = (props)=> {
 
     //can't verify that I did this right yet. Maybe need the token?
 useEffect(() =>{
-    axios.get(`http://localhost:5000/api/articles/${editId}`)
+    axiosWithAuth()
+        .get(`/articles/${editId}`)
         .then(res =>{
             console.log('EditForm UseEffect Data:', res.data);
             setArticle(res.data);
@@ -25,7 +26,9 @@ useEffect(() =>{
         .catch(err =>{
             console.log('EditForm useEffect error:', err)
         })
-})
+}, [])
+
+console.log(article)
 
     const handleChange = (e)=> {
         setArticle({

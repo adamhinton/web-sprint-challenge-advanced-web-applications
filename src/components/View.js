@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { edit } from '../mocks/data';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 import Article from './Article';
@@ -48,6 +49,17 @@ console.log('Articles after View.js useEffect:', articles)
 
 
     const handleEdit = (article) => {
+        console.log('edit blah')
+        axiosWithAuth()
+            .put(`articles/${editId}`, article)
+                .then(res =>{
+                    console.log('Articles after view.js handleEdit:', res.data);
+                    setEditing(false)
+                    setArticles(res.data)
+                })
+                .catch(err =>{
+                    console.log(err)
+                })
     }
 
     const handleEditSelect = (id)=> {
