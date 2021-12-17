@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
@@ -11,6 +11,18 @@ const View = (props) => {
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 
+useEffect(() =>{
+    axiosWithAuth()
+
+    .get('/articles')
+        .then(res =>{
+            console.log('View.js useEffect res.data:', res.data)
+        })
+        .catch(err =>{
+            console.log('View.js useeffect err:', err)
+        })
+})
+
     //adding this in
     const deleteArticle = (id) => {
         setItems(articles.filter(article=> (article.id !== id)));
@@ -19,8 +31,8 @@ const View = (props) => {
 
     //need to work on this still, not sure how to update local state with changes
     const handleDelete = (id) => {
-        console.log('Yay! Delete!')
-        axios.delete(`http://localhost:5000/api/articles/{id}`)
+        console.log('Yay! Starting Delete!')
+        axios.delete(`http://localhost:5000/api/articles/${id}`)
             .then(res =>{
                 deleteArticle(id);
                 console.log('Data after delete:', res.data)
@@ -29,6 +41,8 @@ const View = (props) => {
                 console.log('Delete Error AD:', err)
             })
     }
+
+
 
     const handleEdit = (article) => {
     }

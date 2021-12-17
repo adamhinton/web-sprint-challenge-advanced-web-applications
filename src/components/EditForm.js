@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initialArticle = {
     id:"",
@@ -12,6 +13,18 @@ const initialArticle = {
 const EditForm = (props)=> {
     const [article, setArticle]  = useState(initialArticle);
     const {handleEdit, handleEditCancel, editId} = props;
+
+    //can't verify that I did this right yet. Maybe need the token?
+useEffect(() =>{
+    axios.get(`http://localhost:5000/api/articles/${editId}`)
+        .then(res =>{
+            console.log('EditForm UseEffect Data:', res.data);
+            setArticle(res.data);
+        })
+        .catch(err =>{
+            console.log('EditForm useEffect error:', err)
+        })
+})
 
     const handleChange = (e)=> {
         setArticle({
