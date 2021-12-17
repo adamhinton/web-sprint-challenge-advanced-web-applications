@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useHistory } from 'react-router';
 
-const Logout = () => {        
-    return(<div>Blah Blah Blah</div>);
-    //blah blah blah is placeholder text, obviously - AD
+const Logout = () => {     
+    const { push } = useHistory();
+    useEffect(() => {
+        localStorage.clear('token')
+        push('/login')
+    }, [])
+    
+    return(<div></div>);
 }
 
 export default Logout;
