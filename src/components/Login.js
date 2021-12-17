@@ -19,7 +19,7 @@ const Login = () => {
             ...cred,
             [e.target.name]:e.target.value,
           });
-          console.log(cred)
+        //   console.log(cred)
     }
 
 
@@ -27,12 +27,12 @@ const Login = () => {
         e.preventDefault();
         axios.post('http://localhost:5000/api/login', {username: cred.username, password: cred.password})
             .then(res =>{
-                console.log('Res token, yay!:', res.data.token)
+                // console.log('Res token, yay!:', res.data.token)
                 localStorage.setItem('token', res.data.token);
                 push('/view')
             })
             .catch(err =>{
-                console.log('Hmm, Err:', err)
+                // console.log('HandleSubmit Error:', err)
                 setError("You did it wrong, you're banned now")
                 console.log(username, password)
             })
