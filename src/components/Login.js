@@ -25,7 +25,7 @@ const Login = () => {
 
     const handleSubmit = e =>{
         e.preventDefault();
-        axios.post('http://localhost:5000/api/login', { username: 'Lambda', password: 'School' })
+        axios.post('http://localhost:5000/api/login', {username: cred.username, password: cred.password})
             .then(res =>{
                 console.log('Res token, yay!:', res.data.token)
                 localStorage.setItem('token', res.data.token);
@@ -34,6 +34,7 @@ const Login = () => {
             .catch(err =>{
                 console.log('Hmm, Err:', err)
                 setError("You did it wrong, you're banned now")
+                console.log(username, password)
             })
     }
 
@@ -54,6 +55,8 @@ const Login = () => {
                 </div>
 
                 <button id='submit'>Submit</button>
+
+                <p id='error'>{error? error : ''}</p>
 
             </form>
         </ModalContainer>
