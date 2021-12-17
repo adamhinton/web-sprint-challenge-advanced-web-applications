@@ -24,7 +24,7 @@ useEffect(() =>{
         })
 }, [])
 
-console.log('Articles after View.js useEffect:', articles)
+// console.log('Articles after View.js useEffect:', articles)
 
     //adding this in
     const deleteArticle = (id) => {
@@ -32,28 +32,26 @@ console.log('Articles after View.js useEffect:', articles)
       }
     
 
-    //need to work on this still, not sure how to update local state with changes
     const handleDelete = (id) => {
-        console.log('Yay! Starting Delete!')
+        // console.log('Yay! Starting Delete!')
         axiosWithAuth()
             .delete(`/articles/${id}`)
             .then(res =>{
                 deleteArticle(id);
-                console.log('Data after delete:', res.data)
+                // console.log('Data after delete:', res.data)
             })
             .catch(err =>{
-                console.log('Delete Error AD:', err)
+                console.log('Delete Error:', err)
             })
     }
 
 
 
     const handleEdit = (article) => {
-        console.log('edit blah')
         axiosWithAuth()
             .put(`articles/${editId}`, article)
                 .then(res =>{
-                    console.log('Articles after view.js handleEdit:', res.data);
+                    // console.log('Articles after view.js handleEdit:', res.data);
                     setEditing(false)
                     setArticles(res.data)
                 })

@@ -15,12 +15,11 @@ const EditForm = (props)=> {
     const [article, setArticle]  = useState(initialArticle);
     const {handleEdit, handleEditCancel, editId} = props;
 
-    //can't verify that I did this right yet. Maybe need the token?
 useEffect(() =>{
     axiosWithAuth()
         .get(`/articles/${editId}`)
         .then(res =>{
-            console.log('EditForm UseEffect Data:', res.data);
+            // console.log('EditForm UseEffect Data:', res.data);
             setArticle(res.data);
         })
         .catch(err =>{
@@ -28,7 +27,7 @@ useEffect(() =>{
         })
 }, [])
 
-console.log(article)
+// console.log(article)
 
     const handleChange = (e)=> {
         setArticle({
