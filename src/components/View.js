@@ -16,23 +16,26 @@ useEffect(() =>{
 
     .get('/articles')
         .then(res =>{
-            console.log('View.js useEffect res.data:', res.data)
+            setArticles(res.data);
         })
         .catch(err =>{
             console.log('View.js useeffect err:', err)
         })
-})
+}, [])
+
+console.log('Articles after View.js useEffect:', articles)
 
     //adding this in
     const deleteArticle = (id) => {
-        setItems(articles.filter(article=> (article.id !== id)));
+        setArticles(articles.filter(article=> (article.id !== id)));
       }
     
 
     //need to work on this still, not sure how to update local state with changes
     const handleDelete = (id) => {
         console.log('Yay! Starting Delete!')
-        axios.delete(`http://localhost:5000/api/articles/${id}`)
+        axiosWithAuth()
+            .delete(`/articles/${id}`)
             .then(res =>{
                 deleteArticle(id);
                 console.log('Data after delete:', res.data)
