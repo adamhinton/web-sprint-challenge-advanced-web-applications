@@ -42,23 +42,23 @@ const Login = () => {
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
-            <form  onSubmit = {handleSubmit}>
+            <FormGroup onSubmit = {handleSubmit}>
   
                 <div>
-                    <label htmlFor='username'>Username</label>
-                    <input  onChange= {handleChange} name= 'username' id='username'/>
+                    <Label htmlFor='username'>Username</Label>
+                    <Input  onChange= {handleChange} name= 'username' id='username'/>
                 </div>
 
                 <div>
-                    <label htmlFor='password'>Password</label>
-                    <input onChange = {handleChange} name='password' type='password' id='password'/>
+                    <Label htmlFor='password'>Password</Label>
+                    <Input onChange = {handleChange} name='password' type='password' id='password'/>
                 </div>
 
-                <button id='submit'>Submit</button>
+                <Button id='submit'>Submit</Button>
 
                 <p id='error'>{error? error : ''}</p>
 
-            </form>
+            </FormGroup>
         </ModalContainer>
     </ComponentContainer>);
 }
