@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
 
+
+//Lambda already made some styled components for us as seen below, very helpful
+
 const Login = () => {
     const {push} = useHistory();
 
@@ -10,16 +13,16 @@ const Login = () => {
         username: '',
         password: '',
     })
+    //this is the user and pass as the client is typing it in.
 
     const [error, setError] = useState("")
-// console.log(cred);
 
     const handleChange = e =>{
         setCred({
             ...cred,
             [e.target.name]:e.target.value,
           });
-        //   console.log(cred)
+          //this live-updates the user and pass state as the user types in the relevant fields.
     }
 
 
@@ -27,14 +30,12 @@ const Login = () => {
         e.preventDefault();
         axios.post('http://localhost:5000/api/login', {username: cred.username, password: cred.password})
             .then(res =>{
-                // console.log('Res token, yay!:', res.data.token)
                 localStorage.setItem('token', res.data.token);
                 push('/view')
             })
             .catch(err =>{
-                // console.log('HandleSubmit Error:', err)
                 setError("You did it wrong, you're banned now")
-                console.log(username, password)
+                //This will only appear below if they've typed in the wrong user/pass.
             })
     }
 

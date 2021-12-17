@@ -24,21 +24,17 @@ useEffect(() =>{
         })
 }, [])
 
-// console.log('Articles after View.js useEffect:', articles)
-
-    //adding this in
     const deleteArticle = (id) => {
         setArticles(articles.filter(article=> (article.id !== id)));
       }
+      //I could have just made this an anon fxn whenever I need it instead of defining it elsewhere. I decided this was cleaner.
     
 
     const handleDelete = (id) => {
-        // console.log('Yay! Starting Delete!')
         axiosWithAuth()
             .delete(`/articles/${id}`)
             .then(res =>{
                 deleteArticle(id);
-                // console.log('Data after delete:', res.data)
             })
             .catch(err =>{
                 console.log('Delete Error:', err)
@@ -51,7 +47,6 @@ useEffect(() =>{
         axiosWithAuth()
             .put(`articles/${editId}`, article)
                 .then(res =>{
-                    // console.log('Articles after view.js handleEdit:', res.data);
                     setEditing(false)
                     setArticles(res.data)
                 })

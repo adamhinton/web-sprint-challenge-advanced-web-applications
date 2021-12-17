@@ -5,10 +5,13 @@ const Logout = () => {
     const { push } = useHistory();
     useEffect(() => {
         localStorage.clear('token')
+        //clears your token so you're no longer authorized
         push('/login')
+        //brings you back to login page
     }, [])
     
     return(<div></div>);
+    //this component doesn't display anything because it just logs you out and immediately directs you back to login
 }
 
 export default Logout;
