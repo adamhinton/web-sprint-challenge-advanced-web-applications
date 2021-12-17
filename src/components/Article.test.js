@@ -17,21 +17,23 @@ test('renders component without errors', ()=> {
 
 
 test('renders headline, author from the article when passed in through props', ()=> {
-    const article = [
+    const article = 
         {
             id: 'aMqwd',
-            headline: "headline",
+            headline: "Heyo",
             createdOn: '2021-08-09T18:02:38-04:00',
-            summary: "summary",
-            body: ""
-        }
-    ];
+            summary: "fjklads;fas",
+            body: "blah blah blah",
+            author: 'James Johsnon'
+        };
 
     render(<Article article = {article}/>);
-    const headline = screen.queryByTestId(/headline/i);
-    const author = screen.queryByTestId(/author/i);
-    const summary = screen.queryByTestId(/summary/i);
-    const body =  screen.queryByTestId(/body/i)
+    const headline = screen.getByText(/heyo/i);
+    const author = screen.queryByText(/James Johsnon/i);
+    const summary = screen.queryByText(/fjklads;fas/i);
+    const body =  screen.queryByText(/blah blah blah/i)
+
+    console.log('headline:', headline)
 
     expect(headline).toBeTruthy();
     expect(author).toBeTruthy();
