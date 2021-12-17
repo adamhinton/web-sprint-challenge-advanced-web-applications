@@ -1,12 +1,17 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 
 const Login = () => {
+    const {push} = useHistory();
+
     const [cred, setCred] = useState({
         username: '',
         password: '',
     })
+
+    const [error, setError] = useState("")
 // console.log(cred);
 
     const handleChange = e =>{
@@ -22,10 +27,13 @@ const Login = () => {
         e.preventDefault();
         axios.post('http://localhost:5000/api/login', { username: 'Lambda', password: 'School' })
             .then(res =>{
-                console.log('Res, yay!:', res)
+                console.log('Res token, yay!:', res.data.token)
+                localStorage.setItem('token', res.data.token);
+                push('/view')
             })
             .catch(err =>{
                 console.log('Hmm, Err:', err)
+                setError("You did it wrong, you're banned now")
             })
     }
 
