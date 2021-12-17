@@ -1,12 +1,17 @@
 import React from 'react';
 import '@testing-library/jest-dom';
+import Article from './Article';
+
+import { render, screen, waitFor } from '@testing-library/react';
 
 import userEvent from '@testing-library/user-event';
 import MutationObserver from 'mutationobserver-shim';
 
-import Article from './Article';
 
-test('renders component without errors', ()=> {
+test('renders component without errors', async ()=> {
+    const article = [];
+
+    render(<Article article={article}/>)
 });
 
 // test('renders headline, author from the article when passed in through props', ()=> {
