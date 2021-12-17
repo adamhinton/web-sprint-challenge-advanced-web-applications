@@ -27,7 +27,8 @@ const View = (props) => {
     return(<ComponentContainer>
         <HeaderContainer>View Articles</HeaderContainer>
         <ContentContainer flexDirection="row">
-            <ArticleContainer>
+            <ArticleContainer> <h1>View: Blah BLah Blah</h1> 
+            {/* placeholder text so I know at a glance what component I'm on */}
                 {
                     articles.map(article => {
                         return <ArticleDivider key={article.id}>
