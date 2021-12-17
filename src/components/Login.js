@@ -1,13 +1,32 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Login = () => {
-    const handleSubmit = e =>{
-        return ('blah blah blah')
-    }
+    const [cred, setCred] = useState({
+        username: '',
+        password: '',
+    })
+// console.log(cred);
 
     const handleChange = e =>{
-        return ('blah blah blah')
+        setCred({
+            ...cred,
+            [e.target.name]:e.target.value,
+          });
+          console.log(cred)
+    }
+
+
+    const handleSubmit = e =>{
+        e.preventDefault();
+        axios.post('http://localhost:5000/api/login', { username: 'Lambda', password: 'School' })
+            .then(res =>{
+                console.log('Res, yay!:', res)
+            })
+            .catch(err =>{
+                console.log('Hmm, Err:', err)
+            })
     }
 
 
