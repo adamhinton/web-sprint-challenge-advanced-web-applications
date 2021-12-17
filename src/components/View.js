@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 import Article from './Article';
 import EditForm from './EditForm';
@@ -9,7 +11,23 @@ const View = (props) => {
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 
+    //adding this in
+    const deleteArticle = (id) => {
+        setItems(articles.filter(article=> (article.id !== id)));
+      }
+    
+
+    //need to work on this still, not sure how to update local state with changes
     const handleDelete = (id) => {
+        console.log('Yay! Delete!')
+        axios.delete(`http://localhost:5000/api/articles/{id}`)
+            .then(res =>{
+                deleteArticle(id);
+                console.log('Data after delete:', res.data)
+            })
+            .catch(err =>{
+                console.log('Delete Error AD:', err)
+            })
     }
 
     const handleEdit = (article) => {
